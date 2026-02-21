@@ -1,0 +1,9 @@
+{
+  "name": "Metrolite HMIS",
+  "description": "A comprehensive Hospital Management Information System with modules for billing, clinical records, pharmacy, laboratory, and human resources.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}

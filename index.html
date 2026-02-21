@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UltraHub HMIS | Home</title>
+    <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/hospital.svg" type="image/svg+xml">
+    
+    <!-- Modern Typography: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        mch: '#ec4899',
+                        theme: {
+                            primary: 'var(--theme-primary)',
+                            primaryHover: 'var(--theme-primaryHover)',
+                            secondary: 'var(--theme-secondary)',
+                            background: 'var(--theme-background)',
+                            surface: 'var(--theme-surface)',
+                            surfaceHover: 'var(--theme-surfaceHover)',
+                            text: 'var(--theme-text)',
+                            'text-muted': 'var(--theme-textMuted)',
+                            border: 'var(--theme-border)',
+                            accent: 'var(--theme-accent)',
+                        }
+                    },
+                    borderRadius: {
+                        'none': '0',
+                        'sm': '0',
+                        'DEFAULT': '0',
+                        'md': '0',
+                        'lg': '0',
+                        'xl': '0',
+                        '2xl': '0',
+                        '3xl': '0',
+                        'full': '0',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Legacy Libraries Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Ladda/1.0.6/ladda-themeless.min.css">
+    
+    <style>
+        :root {
+            --mch-color: #ec4899;
+            --theme-primary: #2563eb;
+            --theme-primaryHover: #1d4ed8;
+            --theme-secondary: #475569;
+            --theme-background: #f4f7f6;
+            --theme-surface: #ffffff;
+            --theme-surfaceHover: #f8fafc;
+            --theme-text: #1e293b;
+            --theme-textMuted: #64748b;
+            --theme-border: #e2e8f0;
+            --theme-inputBg: #ffffff;
+            --theme-inputBorder: #d1d5db;
+            --theme-accent: #ec4899;
+        }
+
+        /* Enforce No Round Corners Globally */
+        * {
+            border-radius: 0 !important;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--theme-background);
+            color: var(--theme-text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .dark body {
+            background-color: var(--theme-background);
+            color: var(--theme-text);
+        }
+
+        /* Override specific font classes to use the new system font for consistency */
+        .font-helvetica, .font-poppins {
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+        }
+        
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace !important;
+        }
+        
+        /* Sidebar Scrollbar Styling */
+        .sidebar-scroll::-webkit-scrollbar { width: 8px; }
+        .sidebar-scroll::-webkit-scrollbar-track { background: #1e2121; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: #4a5568; border: 1px solid #1e2121; }
+        .sidebar-scroll::-webkit-scrollbar-thumb:hover { background: #718096; }
+        
+        /* Standard Scrollbar Overrides for Dark Mode */
+        .dark .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border: 2px solid #1e293b; }
+
+        /* Legacy Triage/Clinical Styles */
+        .scheduler-border { border: 1px solid var(--theme-border) !important; padding: 0 1.4em 1.4em 1.4em !important; margin: 0 0 1.5em 0 !important; }
+        .scheduler-border legend { font-size: 1.2em !important; font-weight: bold !important; text-align: left !important; width: auto; padding: 0 10px; border-bottom: none; color: var(--theme-primary); }
+        
+        #toDoList { list-style: none; padding: 0; }
+        #toDoList li { padding: 8px; border-bottom: 1px solid var(--theme-border); position: relative; }
+        .dark #toDoList li { border-color: var(--theme-border); }
+
+        /* --- GLOBAL INPUT STYLING --- */
+        input:not(.text-white):not([readonly]):not([disabled]), 
+        select:not(.text-white):not([disabled]), 
+        textarea:not(.text-white):not([readonly]):not([disabled]) {
+            background-color: var(--theme-inputBg) !important;
+            color: var(--theme-text) !important;
+            border-color: var(--theme-inputBorder);
+        }
+
+        .dark input:not(.text-white):not([readonly]):not([disabled]), 
+        .dark select:not(.text-white):not([disabled]), 
+        .dark textarea:not(.text-white):not([readonly]):not([disabled]) {
+            background-color: var(--theme-inputBg) !important;
+            color: var(--theme-text) !important;
+            border-color: var(--theme-inputBorder) !important;
+        }
+
+        /* Read-only / Disabled Inputs */
+        input:not(.text-white):is([readonly], [disabled]), 
+        textarea:not(.text-white):is([readonly], [disabled]),
+        select:not(.text-white):is([disabled]) {
+            background-color: var(--theme-background) !important;
+            color: var(--theme-textMuted) !important;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .dark input:not(.text-white):is([readonly], [disabled]), 
+        .dark textarea:not(.text-white):is([readonly], [disabled]),
+        .dark select:not(.text-white):is([disabled]) {
+            background-color: var(--theme-background) !important;
+            color: var(--theme-textMuted) !important;
+            border-color: var(--theme-border) !important;
+        }
+
+        /* Calendar Picker Theme */
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
+        }
+        
+        .dark input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1) brightness(1.5);
+        }
+
+        /* Loader Animation */
+        .cs-loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 99999; display: flex; align-items: center; justify-content: center; }
+        .dark .cs-loader { background: #020617; }
+        
+    </style>
+
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
+    "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+    "react-router": "https://esm.sh/react-router@^7.13.0",
+    "react-to-print": "https://esm.sh/react-to-print@^3.2.0"
+  }
+}
+</script>
+
+    <!-- Legacy Core Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" defer></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" defer></script>
+    
+    <!-- App Custom Legacy Logic -->
+    <script src="legacy/logic.js" defer></script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-gray-100" id="body">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
